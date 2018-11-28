@@ -1,0 +1,14 @@
+# Created by https://www.gitignore.io/api/django
+
+### Django ###
+.vscode
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+/media
+/static
+
+
+
