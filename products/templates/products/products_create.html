@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<form action="."  method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% comment %} <input type="text" name="title"  placeholder="your title"> {% endcomment %}
+    <input type="submit" value="Create" >
+</form>
+{% endblock %}

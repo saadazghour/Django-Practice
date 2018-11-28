@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {{ request.user.is_authenticated }}
+    <p>Home page</p>
+    {{ html_text|safe }}
+    <h3>{{ title|capfirst|upper }}</h3>
+    <p>This is a templates</p>
+    {{ text|title }}<br>
+    {{ number }}<br>
+    {{ my_list }}
+    
+    <ul>
+    {% for my_sub_list in my_list %}
+        {% if my_sub_list == 123 %}
+            <li>{{ forloop.counter }} - {{ my_sub_list|add:22 }}</li>
+        {% elif my_sub_list == "SAzghour" %}
+            <li> {{ forloop.counter }} - This is my name on Github account </li>
+        {% else %}
+            <li>{{ forloop.counter }} - {{ my_sub_list }}</li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+
+{% endblock %}
