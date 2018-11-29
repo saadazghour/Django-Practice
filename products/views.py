@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.http import Http404
 from .models import Product
 from .forms import ProductCreateForm, RawCreateForm
 
@@ -36,7 +37,14 @@ def product_details_views(request):
 
 # dynamic URL Routing
 def dynamic_views(request, my_id):
-    my_object = Product.objects.get(id=my_id)
+    # my_object = Product.objects.get(id=my_id)
+    my_object = get_object_or_404(Product, id=my_id)  # I prefer this method because easy
+
+    # try:
+    #     my_object = Product.objects.get(id=my_id)
+    # except Product.DoesNotExist:
+    #     raise Http404
+
     return render(request, "products/products_details.html", {'object': my_object})
 
 
