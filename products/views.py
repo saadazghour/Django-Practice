@@ -34,6 +34,12 @@ def product_details_views(request):
     # print(obj.price)
     return render(request, "products/products_details.html", {'object': obj})
 
+# dynamic URL Routing
+def dynamic_views(request, my_id):
+    my_object = Product.objects.get(id=my_id)
+    return render(request, "products/products_details.html", {'object': my_object})
+
+
 
 def product_create_views(request):
     form = ProductCreateForm()
