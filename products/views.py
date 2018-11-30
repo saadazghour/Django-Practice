@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import Http404
 from .models import Product
 from .forms import ProductCreateForm, RawCreateForm
@@ -13,7 +13,7 @@ def render_initial_data(request):
         'email':'saad.azghour@gmail.com'
     }
 
-    my_object = Product.objects.get(id=14)
+    my_object = Product.objects.get(id=49)      # render object from Database
 
     # usually when editing something in backend with instance attribute
     # not initialise data with initial attr (initial_data == Dictionnary)
@@ -26,7 +26,7 @@ def render_initial_data(request):
 
 
 def product_details_views(request):
-    obj = Product.objects.get(id=10)
+    obj = Product.objects.get(id=49)
     # you can use this method for context or using dictionary immediately
         # context = {
         #         'object': obj
@@ -61,9 +61,17 @@ def product_create_views(request):
         form = ProductCreateForm(request.POST)
         if form.is_valid():
             form.save()
-            form = ProductCreateForm()
-            
+            form = ProductCreateForm()            
     return render(request, "products/products_create.html", {'form':form})
+
+
+def procuct_delete_views(request, obj_id):
+    my_object = get_object_or_404(Product, id=obj_id)
+    if request.method == 'POST':
+        # confirm delete for POST request
+        my_object.delete()
+        return redirect('../../')
+    return render(request, "products/products_delete.html", {'object':my_object})
 
 
 # def product_create_views(request):

@@ -20,10 +20,11 @@ from products.views import (
     product_details_views,
     product_create_views,
     render_initial_data,
-    dynamic_views
+    dynamic_views,
+    procuct_delete_views
 )
 
-urlpatterns = [ 
+urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_views, name='home'),
     path('contact/', contact_views, name='contact'),
@@ -31,6 +32,7 @@ urlpatterns = [
     path('social/', social_views, name='social'),
     path('product/', product_details_views, name='details'),
     path('dynamic/<int:my_id>/', dynamic_views),
+    path('product/<int:obj_id>/delete/', procuct_delete_views),
     path('create/', product_create_views),
     path('initial/', render_initial_data)
 ]
