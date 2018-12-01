@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br><br>
+
+{% for items in object_list %}
+
+<ul>
+<li>{{ items.id }} -- {{ items.title }}</li><br>
+<li>{{ items.id }} -- {{ items.descriptions }}</li><br>
+<li>{{ items.id }} -- {{ items.price }}</li><br>
+<li>{{ items.id }} -- {{ items.summary }}</li><br>
+<li>{{ items.id }} -- {{ items.featured }}</li><br>
+</ul>
+
+{% endfor %}
+
+{% endblock  %}

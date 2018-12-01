@@ -35,6 +35,12 @@ def product_details_views(request):
     # print(obj.price)
     return render(request, "products/products_details.html", {'object': obj})
 
+
+def product_list_views(request):
+    queryset = Product.objects.all()
+    return render(request, "products/products_list.html", {'object_list':queryset})
+
+
 # dynamic URL Routing
 def dynamic_views(request, my_id):
     # my_object = Product.objects.get(id=my_id)

@@ -27,7 +27,7 @@ class ProductCreateForm(forms.ModelForm):
 
     email = forms.EmailField()
 
-    summary = forms.CharField(widget=forms.Textarea(attrs={'cols':60 ,'rows':8}))
+    summary = forms.CharField(widget=forms.Textarea(attrs={'cols':60, 'rows':8}))
 
     
 
