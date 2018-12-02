@@ -31,10 +31,10 @@ urlpatterns = [
     path('contact/', contact_views, name='contact'),
     path('about/', about_views, name='about'),
     path('social/', social_views, name='social'),
-    path('product_list/', product_list_views),
+    path('product_list/', product_list_views, name="list"),
     path('product/', product_details_views, name='details'),
-    path('dynamic/<int:my_id>/', dynamic_views),
-    path('product/<int:obj_id>/delete/', procuct_delete_views),
-    path('create/', product_create_views),
-    path('initial/', render_initial_data)
+    path('product/<int:my_id>/', dynamic_views, name="dynamic"),
+    path('product/<int:obj_id>/delete/', procuct_delete_views, name="delete"),
+    path('create/', product_create_views, name="create"),
+    path('initial/', render_initial_data, name="initial")
 ]
