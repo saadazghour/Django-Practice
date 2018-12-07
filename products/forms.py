@@ -16,9 +16,9 @@ class ProductCreateForm(forms.ModelForm):
         )
     
     descriptions = forms.CharField(widget=forms.Textarea(attrs={
-            'placeholder':'Enter somthing Here',
-            'rows':8,
-            'cols':60
+            'placeholder' : 'Enter somthing Here',
+            'rows': 8,
+            'cols': 60
         }
     )
 )
