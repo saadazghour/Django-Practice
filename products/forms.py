@@ -4,7 +4,11 @@ from .models import Product
 class ProductCreateForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['title', 'descriptions', 'price', 'summary']
+        fields = [
+            'title',
+            'descriptions',
+            'price','summary'
+        ]
 
 
     title = forms.CharField(
@@ -41,7 +45,7 @@ class ProductCreateForm(forms.ModelForm):
     #     return summary
 
 
-
+    # form validation
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if not email.endswith('com'):

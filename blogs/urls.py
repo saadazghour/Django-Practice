@@ -15,15 +15,18 @@ Including another URLconf
 """
 from django.urls import path
 from .views import (
-    ArticleDetailView,
     ArticleListView,
-    article_create_views
+    ArticleDetailView,
+    ArticleCreateView,
+    ArticleUpdateView
 )
 
 
+# app_name = "blogs"    # still working without using app_name attribute
 
 urlpatterns = [
     path('', ArticleListView.as_view(), name="article_list"),
     path('<int:my_id>', ArticleDetailView.as_view(), name="article_detail"),  # or using <int:pk> (By default id=pk)
-    path('create/', article_create_views, name="create")
+    path('create/', ArticleCreateView.as_view(), name="article-create"),
+    path('<int:id_update>/update/', ArticleUpdateView.as_view(), name="article_update")
 ]
