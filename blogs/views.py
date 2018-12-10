@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.urls import reverse
 from django.views.generic import (
     ListView,
     DetailView,
@@ -31,7 +32,7 @@ class ArticleCreateView(CreateView):
     template_name = "articles/article_create.html"
     form_class = ArticleCreateForm
     queryset = Article.objects.all()
-    # success_url = '/'                               # you can override get_absolute_url for my models through success_url attr  
+    # success_url = '/'                      # you can override get_absolute_url for my models through success_url attr
 
     def form_valid(self, form):
         # print(form.cleaned_data)
@@ -55,6 +56,19 @@ class ArticleUpdateView(UpdateView):
         id_ = self.kwargs.get("id_update")
         return get_object_or_404(Article, id=id_)
 
+
+class ArticleDeleteView(DeleteView):
+    template_name = "articles/article_delete.html"
+    form_class = ArticleCreateForm
+    # success_url = "../../"
+
+    def get_object(self):
+        id_ = self.kwargs.get("id_delete")
+        return get_object_or_404(Article, id=id_)
+
+
+    def get_success_url(self):
+        return reverse("article_list")
 
 
 

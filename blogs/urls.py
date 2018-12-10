@@ -18,7 +18,8 @@ from .views import (
     ArticleListView,
     ArticleDetailView,
     ArticleCreateView,
-    ArticleUpdateView
+    ArticleUpdateView,
+    ArticleDeleteView
 )
 
 
@@ -27,6 +28,7 @@ from .views import (
 urlpatterns = [
     path('', ArticleListView.as_view(), name="article_list"),
     path('<int:my_id>', ArticleDetailView.as_view(), name="article_detail"),  # or using <int:pk> (By default id=pk)
-    path('create/', ArticleCreateView.as_view(), name="article-create"),
-    path('<int:id_update>/update/', ArticleUpdateView.as_view(), name="article_update")
+    path('create/', ArticleCreateView.as_view(), name="article_create"),
+    path('<int:id_update>/update/', ArticleUpdateView.as_view(), name="article_update"),
+    path('<int:id_delete>/delete/', ArticleDeleteView.as_view(), name="article_delete")
 ]
