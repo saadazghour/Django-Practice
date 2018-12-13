@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% for item in list_student %}
+    <ul>
+        <li>{{ item.id }} -- {{ item.first_name }}</li><br>
+        <li>{{ item.id }} -- {{ item.last_name }}</li><br>
+        <li>{{ item.id }} -- {{ item.age }}</li><br>
+    </ul>
+    {% endfor %}
+{% endblock %}

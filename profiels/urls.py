@@ -17,10 +17,14 @@ Including another URLconf
 from django.urls import path
 from .views import (
     student_list_views,
+    StudentListView,
+    FirstStudentListView,
     StudentView
 )
 
 urlpatterns = [
-    path('', StudentView.as_view(template_name="contact.html"), name="list_student"),
+    path('', StudentView.as_view(template_name="contact.html")),
+    path('student_list/', StudentListView.as_view(), name="student_list"),
+    path('first_student/', FirstStudentListView.as_view(), name="first_student"),
     path('<int:id>', StudentView.as_view(), name="list_detail")
 ]
