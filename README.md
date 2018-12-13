@@ -1,6 +1,6 @@
 # Django Training
 
-Coding and learn by doing and more practice
+Project for test my knowledge and more Practice
 
 ## Running the Project Locally
 
@@ -28,4 +28,4 @@ Finally, run the development server:
 python manage.py runserver
 ```
 
-The project will be available at **http://localhost:8000**
+The project will be available at  **http://localhost:8000**

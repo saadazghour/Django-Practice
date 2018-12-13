@@ -34,19 +34,20 @@ class ArticleCreateView(CreateView):
     queryset = Article.objects.all()
     # success_url = '/'                      # you can override get_absolute_url for my models through success_url attr
 
+
     def form_valid(self, form):
         # print(form.cleaned_data)
         return super().form_valid(form)
 
-    
+
     # def get_success_url(self):
     #     return '/'
-    
+
 
 class ArticleUpdateView(UpdateView):
     template_name = "articles/article_update.html"
     form_class = ArticleCreateForm
-    
+
 
     def form_valid(self, form):
         return super().form_valid(form)
