@@ -19,6 +19,8 @@ from .views import (
     student_list_views,
     StudentListView,
     FirstStudentListView,
+    StudentCreateView,
+    # StudentUpdateView,
     StudentView
 )
 
@@ -26,5 +28,7 @@ urlpatterns = [
     path('', StudentView.as_view(template_name="contact.html")),
     path('student_list/', StudentListView.as_view(), name="student_list"),
     path('first_student/', FirstStudentListView.as_view(), name="first_student"),
-    path('<int:id>', StudentView.as_view(), name="list_detail")
+    path('<int:id>', StudentView.as_view(), name="list_detail"),
+    path('create/', StudentCreateView.as_view(), name="student_create"),
+    # path('<int:id>/update',StudentUpdateView.as_view(), name="student_update" )
 ]

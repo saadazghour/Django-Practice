@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 from .models import Student
+from .forms import StudentCreateForm
 
 
 # Create your views here.
@@ -29,10 +30,44 @@ class StudentListView(View):
         return render(request, self.template_name, context)
 
 
-
 class FirstStudentListView(StudentListView):
     queryset = Student.objects.filter(id=2)
 
+
+class StudentCreateView(View):
+    template_name = "profiels/student_create.html"
+    # initial_data = {
+    #     'first_name':'SAzghour',
+    #     'age':88
+    # }
+
+    # retrieve_student_data = Student.objects.get(id=1)
+    form = StudentCreateForm()
+    # GET Methode
+    def get(self, request, *args, **kwargs):
+        context = {'form': self.form}
+        return render(request, self.template_name, context)
+
+
+    # POST Methode
+    def post(self, request, *args, **kwargs):
+        form = StudentCreateForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+        context = {'form': form}
+        return render(request, self.template_name, context)
+
+
+
+# class StudentUpdateView(View):
+#     template_name = "profiels/student_update.html"
+
+#     def get(self, request, id=id *args, **kwargs): 
+#         context = {
+#             'form'
+#         }
+#         return(request, self.template_name, context)
 
 
 # class StudentListView(View):
