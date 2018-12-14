@@ -36,13 +36,15 @@ class FirstStudentListView(StudentListView):
 
 class StudentCreateView(View):
     template_name = "profiels/student_create.html"
+    form = StudentCreateForm()
+
     # initial_data = {
     #     'first_name':'SAzghour',
     #     'age':88
     # }
 
     # retrieve_student_data = Student.objects.get(id=1)
-    form = StudentCreateForm()
+
     # GET Methode
     def get(self, request, *args, **kwargs):
         context = {'form': self.form}
@@ -54,6 +56,7 @@ class StudentCreateView(View):
         form = StudentCreateForm(request.POST)
         if form.is_valid():
             form.save()
+            # form = StudentCreateForm()
             return redirect('/')
         context = {'form': form}
         return render(request, self.template_name, context)
