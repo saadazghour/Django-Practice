@@ -63,14 +63,40 @@ class StudentCreateView(View):
 
 
 
-# class StudentUpdateView(View):
-#     template_name = "profiels/student_update.html"
+class StudentUpdateView(View):
+    template_name = "profiels/student_update.html"
 
-#     def get(self, request, id=id *args, **kwargs): 
-#         context = {
-#             'form'
-#         }
-#         return(request, self.template_name, context)
+    def get_object(self):
+        id_ = self.kwargs.get("id_update")
+        my_object = None
+        if id_ is not None:
+            my_object = get_object_or_404(Student, id=id_)
+        return my_object
+
+
+    def get(self, request, id=None, *args, **kwargs):
+        # GET Method
+        obj = self.get_object()
+        context = {}
+        if obj is not None:
+            form = StudentCreateForm(instance=obj)
+            context['form'] = form
+            context['object'] = obj
+        return render(request, self.template_name, context)
+
+
+    def post(self, request, id=None, *args, **kwargs):
+        # POST Method
+        obj = self.get_object()
+        context = {}
+        if obj is not None:
+            form = StudentCreateForm(request.POST, instance=obj)
+            if form.is_valid():
+                form.save()
+                # return redirect('../../')
+            context['form'] = form
+            context['object'] = obj
+        return render(request, self.template_name, context)
 
 
 # class StudentListView(View):

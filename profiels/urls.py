@@ -20,7 +20,7 @@ from .views import (
     StudentListView,
     FirstStudentListView,
     StudentCreateView,
-    # StudentUpdateView,
+    StudentUpdateView,
     StudentView
 )
 
@@ -30,5 +30,5 @@ urlpatterns = [
     path('first_student/', FirstStudentListView.as_view(), name="first_student"),
     path('<int:id>', StudentView.as_view(), name="list_detail"),
     path('create/', StudentCreateView.as_view(), name="student_create"),
-    # path('<int:id>/update',StudentUpdateView.as_view(), name="student_update" )
+    path('<int:id_update>/update/', StudentUpdateView.as_view(), name="student_update")
 ]
