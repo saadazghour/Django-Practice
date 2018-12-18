@@ -21,8 +21,11 @@ from .views import (
     FirstStudentListView,
     StudentCreateView,
     StudentUpdateView,
+    StudentDeleteView,
     StudentView
 )
+
+app_name = 'profiels'
 
 urlpatterns = [
     path('', StudentView.as_view(template_name="contact.html")),
@@ -30,5 +33,6 @@ urlpatterns = [
     path('first_student/', FirstStudentListView.as_view(), name="first_student"),
     path('<int:id>', StudentView.as_view(), name="list_detail"),
     path('create/', StudentCreateView.as_view(), name="student_create"),
-    path('<int:id_update>/update/', StudentUpdateView.as_view(), name="student_update")
+    path('<int:id_update>/update/', StudentUpdateView.as_view(), name="student_update"),
+    path('<int:id_delete>/delete/', StudentDeleteView.as_view(), name="student_delete")
 ]

@@ -4,7 +4,7 @@
 
 <form action='.' method='POST'>
     {% csrf_token %}
-    <h1>Now you're do Update to this student {{ object.first_name }} </h1>
+    <h1>Now you're do Update to this student "{{ object.first_name }}" </h1>
     {{ form.as_p }}
     <input type='submit' value="Update">
 </form>

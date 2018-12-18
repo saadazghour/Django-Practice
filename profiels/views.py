@@ -93,10 +93,43 @@ class StudentUpdateView(View):
             form = StudentCreateForm(request.POST, instance=obj)
             if form.is_valid():
                 form.save()
-                # return redirect('../../')
+                return redirect('/profiels/student_list/')
             context['form'] = form
             context['object'] = obj
         return render(request, self.template_name, context)
+
+
+
+class StudentDeleteView(View):
+    template_name = "profiels/student_delete.html"
+
+    def get_object(self):
+        id_ = self.kwargs.get('id_delete')
+        my_obj = None
+        if id is not None:
+            my_obj = get_object_or_404(Student, id=id_)
+        return my_obj
+
+
+    def get(self, request, id=None, *args, **kwargs):
+        # GET Method
+        obj = self.get_object()
+        context = {}
+        if obj is not None:
+            context['object'] = obj
+        return render(request, self.template_name, context)
+ 
+
+    def post(self, request, id=None, *args, **kwargs ):
+        # POST Method
+        obj = self.get_object()
+        context = {}
+        if obj is not None:
+            obj.delete()
+            context['object'] = None
+            return redirect('/profiels/student_list/')
+        return(request, self.template_name, context)
+
 
 
 # class StudentListView(View):
