@@ -5,16 +5,34 @@ from .forms import StudentCreateForm
 
 
 # Create your views here.
-class StudentView(View):                  # Base Class View = View
+class StudentObjectMixin(object):
+    model = Student
+    url_lookup = 'id'
+
+    def get_object(self):
+        id_ = self.kwargs.get(self.url_lookup)
+        my_object = None
+        if id_ is not None:
+            my_object = get_object_or_404(self.model, id=id_)
+        return my_object
+
+
+
+class StudentView(StudentObjectMixin, View):                  # Base Class View = View
     template_name = "profiels/student_detail.html"
 
     def get(self, request, id=None, *args, **kwargs):
         # my_object = Student.objects.all()
-        context = {}
-        if id is not None:
-            # print(id)
-            my_object = get_object_or_404(Student, id=id)
-            context['object_detaill'] = my_object
+
+        context = {
+            "object_detaill": self.get_object()
+        }
+
+        # if id is not None:
+        #     # print(id)
+        #     my_object = get_object_or_404(Student, id=id)
+        #     context['object_detaill'] = my_object
+   
         return render(request, self.template_name, context)
 
 
@@ -63,15 +81,15 @@ class StudentCreateView(View):
 
 
 
-class StudentUpdateView(View):
+class StudentUpdateView(StudentObjectMixin, View):
     template_name = "profiels/student_update.html"
 
-    def get_object(self):
-        id_ = self.kwargs.get("id_update")
-        my_object = None
-        if id_ is not None:
-            my_object = get_object_or_404(Student, id=id_)
-        return my_object
+    # def get_object(self):
+    #     id_ = self.kwargs.get("id_update")
+    #     my_object = None
+    #     if id_ is not None:
+    #         my_object = get_object_or_404(Student, id=id_)
+    #     return my_object
 
 
     def get(self, request, id=None, *args, **kwargs):
@@ -100,15 +118,15 @@ class StudentUpdateView(View):
 
 
 
-class StudentDeleteView(View):
+class StudentDeleteView(StudentObjectMixin, View):
     template_name = "profiels/student_delete.html"
 
-    def get_object(self):
-        id_ = self.kwargs.get('id_delete')
-        my_obj = None
-        if id is not None:
-            my_obj = get_object_or_404(Student, id=id_)
-        return my_obj
+    # def get_object(self):
+    #     id_ = self.kwargs.get('id_delete')
+    #     my_obj = None
+    #     if id is not None:
+    #         my_obj = get_object_or_404(Student, id=id_)
+    #     return my_obj
 
 
     def get(self, request, id=None, *args, **kwargs):
