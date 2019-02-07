@@ -2,30 +2,55 @@
 
 Project for test my knowledge and more Practice
 
-## Running the Project Locally
+# Running the Project Locally
 
-First, clone the repo to your local machine:
-
-```bash
-git clone https://github.com/SAzghour/Django-Training.git
-```
-
-Install the requirements:
+## First, clone the repo to your local machine :
 
 ```bash
-pip install -r requirements.txt
+$ git clone https://github.com/SAzghour/Django-Training.git
 ```
 
-Apply the migrations:
+
+## Create a virtual environment :
 
 ```bash
-python manage.py migrate
+$ python -m venv .venv
 ```
 
-Finally, run the development server:
+
+## Activate the virtual environment on Windows :
 
 ```bash
-python manage.py runserver
+$ source venv/Scripts/activate
 ```
 
-The project will be available at  **http://localhost:8000**
+
+## Install the requirements :
+
+```bash
+$ pip install -r requirements.txt
+```
+
+
+## To create an superuser account, use this command :
+
+```bash
+$ python manage.py createsuperuser
+```
+
+
+## Apply the migrations :
+
+```bash
+$ python manage.py migrate
+```
+
+
+## Finally, run the development server :
+
+```bash
+$ python manage.py runserver
+```
+
+
+<b>The project will be available at :   </b>  **http://localhost:8000**
